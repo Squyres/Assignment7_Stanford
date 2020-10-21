@@ -20,12 +20,6 @@ public class BoxDiagram extends GraphicsProgram {
 
 	public void init() {
 		list = new HashMap<String, GObject>();
-		createController();
-		addActionListeners();
-		addMouseListeners();
-		
-	}
-	private void createController() {
 		textField = new JTextField(NAME_SIZE);
 		textField.addActionListener(this);
 		add = new JButton("Add");
@@ -36,10 +30,12 @@ public class BoxDiagram extends GraphicsProgram {
 		add(add, SOUTH);
 		add(remove, SOUTH);
 		add(clear, SOUTH);
-		
+		addActionListeners();
+		addMouseListeners();
+
 	}
 
-	public void ActionPerformed(ActionEvent e) {
+	public void actionPerformed(ActionEvent e) {
 		Object source = e.getSource();
 		if (source == add || source == textField) {
 			addBox(textField.getText());
@@ -65,7 +61,7 @@ public class BoxDiagram extends GraphicsProgram {
 		list.clear();
 	}
 
-	public void MousePressed(MouseEvent e) {
+	public void mousePressed(MouseEvent e) {
 		last = new GPoint(e.getPoint());
 		currentObject = getElementAt(last);
 	}
